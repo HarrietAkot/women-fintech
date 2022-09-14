@@ -2,6 +2,7 @@ import 'package:badges/badges.dart';
 import 'package:carbon_icons/carbon_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:jebajeba_beta/constants.dart';
+import 'package:jebajeba_beta/screens/login_page.dart';
 import 'package:jebajeba_beta/screens/notifications_page.dart';
 import 'package:jebajeba_beta/screens/profile_page.dart';
 import 'package:jebajeba_beta/screens/search_page.dart';
@@ -55,13 +56,14 @@ class _HomePageState extends State<HomePage> {
         ),
         centerTitle: true,
         title: Container(
+            padding: EdgeInsets.only(right: 130),
             child: Text(
-          'Izere Investment Platform',
-          style: TextStyle(
-              fontSize: 20,
-              color: Color.fromARGB(255, 22, 100, 202),
-              fontWeight: FontWeight.w500),
-        )),
+              'Izere Investment',
+              style: TextStyle(
+                  fontSize: 15,
+                  color: Color.fromARGB(255, 22, 100, 202),
+                  fontWeight: FontWeight.w500),
+            )),
         actions: [
           IconButton(
             onPressed: () => Navigator.pushNamed(context, '/notifications'),
@@ -88,35 +90,34 @@ class _HomePageState extends State<HomePage> {
       body: SingleChildScrollView(
         child: Container(
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Container(
-                padding: EdgeInsets.only(left: 100),
+                color: Color.fromARGB(255, 180, 222, 235),
+                padding: EdgeInsets.only(left: 60),
                 child: Container(
-                  padding: EdgeInsets.fromLTRB(0, 10, 0, 170),
+                  padding: EdgeInsets.fromLTRB(0, 10, 0, 10),
                   child: Row(
                     children: [
                       Column(children: [
                         SizedBox(height: 5),
-                        Text('Wallet Balance',
+                        Text('Your Balance',
                             style: TextStyle(
                               fontSize: 16,
-                              fontWeight: FontWeight.bold,
                             )),
                         Text('Shs 60,000',
                             style: TextStyle(
-                              fontSize: 16,
+                              fontSize: 36,
                               fontWeight: FontWeight.bold,
                             )),
                         Row(
                           children: [
                             Container(
+                              padding: EdgeInsets.only(right: 120),
                               child: Column(
                                 children: [
-                                  Text('Wallet Balance',
+                                  Text('Investment',
                                       style: TextStyle(
                                         fontSize: 16,
-                                        fontWeight: FontWeight.bold,
                                       )),
                                   Text('Shs 60,000',
                                       style: TextStyle(
@@ -129,16 +130,15 @@ class _HomePageState extends State<HomePage> {
                             Container(
                               child: Column(
                                 children: [
-                                  Text('Wallet Balance',
+                                  Text('Revenue',
                                       style: TextStyle(
                                         fontSize: 16,
-                                        fontWeight: FontWeight.bold,
                                       )),
-                                  Text('Shs 60,000',
+                                  Text('Shs 266,000',
                                       style: TextStyle(
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.bold,
-                                      )),
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold,
+                                          color: Colors.green)),
                                 ],
                               ),
                             )
@@ -149,25 +149,107 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ),
               ),
-              ImageCarousel(),
-              // buildHeader(),
-              Padding(
-                padding: EdgeInsets.symmetric(
-                    vertical: Constants.kpadding,
-                    horizontal: Constants.kpadding * 2),
-                child: Text(
-                  "Popular",
-                  style: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.bold,
-                  ),
+              Container(
+                child: Row(children: [
+                  Container(
+                      padding: EdgeInsets.fromLTRB(20, 40, 0, 10),
+                      child: Text(
+                        'List of Profitable Ventures',
+                        style: TextStyle(fontWeight: FontWeight.w900),
+                      )),
+                  Container(
+                      padding: EdgeInsets.fromLTRB(100, 40, 0, 10),
+                      child: Text('view all',
+                          style: TextStyle(color: Colors.blue))),
+                ]),
+              ),
+              Container(
+                height: 150,
+                child: ListView.separated(
+                  itemCount: 3,
+                  itemBuilder: (BuildContext context, int index) {
+                    // return ListTile(
+                    //   title: Text("Sam's Piggery ${index + 1}"),
+                    //   );
+                    return Container(
+                      padding: EdgeInsets.fromLTRB(0, 5, 0, 5),
+                      color: Color.fromARGB(255, 235, 209, 126),
+                      child: InkWell(
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => LoginPage()));
+                        },
+                        child: Row(
+                          children: [
+                            Container(
+                                padding: EdgeInsets.fromLTRB(30, 5, 160, 5),
+                                child: Text(
+                                  "Sam's Piggery",
+                                  style: TextStyle(fontWeight: FontWeight.w800),
+                                )),
+                            Container(child: Text("details")),
+                          ],
+                        ),
+                      ),
+                    );
+                  },
+                  separatorBuilder: (BuildContext context, int index) =>
+                      const Divider(),
                 ),
               ),
-              buildIconsList(context),
-              BuildClothesList(),
-              BuildNewClothes(),
-              BuildPhonesList(),
-              BuildCreamsList()
+              Container(
+                child: Row(children: [
+                  Container(
+                      padding: EdgeInsets.fromLTRB(20, 40, 160, 10),
+                      child: Text('My Investments',
+                          style: TextStyle(fontWeight: FontWeight.w900))),
+                  Container(
+                      padding: EdgeInsets.only(top: 40),
+                      child: Text('view all',
+                          style: TextStyle(color: Colors.blue))),
+                ]),
+              ),
+              Container(
+                color: Colors.grey,
+                height: 100,
+                child: ListView.separated(
+                  itemCount: 2,
+                  itemBuilder: (BuildContext context, int index) {
+                    // return ListTile(
+                    //   title: Text("Sam's Piggery ${index + 1}"),
+                    //   );
+                    return InkWell(
+                      child: Container(
+                        color: Color.fromARGB(255, 166, 241, 104),
+                        child: Row(
+                          children: [
+                            Container(
+                                padding: EdgeInsets.fromLTRB(30, 5, 125, 5),
+                                child: Column(
+                                  children: [
+                                    Text(
+                                      "Catherine's Bakery",
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.w500),
+                                    ),
+                                    Text(
+                                      '01 June 2020',
+                                      style: TextStyle(fontSize: 12),
+                                    )
+                                  ],
+                                )),
+                            Container(child: Text("Shs 50,000")),
+                          ],
+                        ),
+                      ),
+                    );
+                  },
+                  separatorBuilder: (BuildContext context, int index) =>
+                      const Divider(),
+                ),
+              ),
             ],
           ),
         ),
