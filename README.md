@@ -1,4 +1,4 @@
-# jebajeba_beta
+# Izere Investments Mobile Application
 
 A new Flutter project.
 
